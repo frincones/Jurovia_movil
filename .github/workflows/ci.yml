@@ -1,0 +1,43 @@
+name: CI
+
+# Analisis estatico y pruebas. Corre en cada push y PR: es barato y no necesita
+# ninguna credencial de tiendas.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  FLUTTER_VERSION: 3.44.8
+
+jobs:
+  analizar:
+    name: Analizar y probar
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+
+      - name: Dependencias
+        run: flutter pub get
+
+      - name: Formato
+        run: dart format --set-exit-if-changed .
+
+      - name: Analisis estatico
+        run: flutter analyze --fatal-infos
+
+      - name: Pruebas
+        # Se excluye test/integration: consume cuota real del backend.
+        run: flutter test --exclude-tags integracion
+
+      # Falla el PR, no la revisión de Apple tres semanas después.
+      - name: Auditoría de tienda
+        run: python3 tool/auditoria_tienda.py

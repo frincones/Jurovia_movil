@@ -1,0 +1,17 @@
+# Copiar a android/key.properties y rellenar. El archivo real NO se versiona.
+#
+# Se genera el keystore una sola vez y se guarda para siempre:
+#
+#   keytool -genkey -v -keystore C:\ruta\segura\jurovia-upload.jks \
+#     -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias upload
+#
+# ATENCION: si pierdes este keystore NO puedes volver a publicar
+# actualizaciones de la app en Google Play con el mismo paquete. Guarda una
+# copia en un gestor de contraseñas o en almacenamiento cifrado.
+# (Si activas Play App Signing, Google conserva la llave de firma final y esta
+# pasa a ser solo la llave de SUBIDA, que sí es recuperable. Actívalo.)
+
+storePassword=
+keyPassword=
+keyAlias=upload
+storeFile=C:/ruta/segura/jurovia-upload.jks
