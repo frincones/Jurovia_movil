@@ -131,7 +131,7 @@ class _ReportSheetState extends ConsumerState<ReportSheet> {
               Text(
                 'Nos ayuda a mejorar el filtrado del asistente. Revisamos todos '
                 'los reportes.',
-                style: JvText.secundario,
+                style: JvText.de(context).secundario,
               ),
               const SizedBox(height: 18),
 
@@ -186,7 +186,9 @@ class _ReportSheetState extends ConsumerState<ReportSheet> {
                       : () => Navigator.of(context).pop(false),
                   child: Text(
                     'Cancelar',
-                    style: JvText.chip.copyWith(color: JvColors.txtTerciario),
+                    style: JvText.chip.copyWith(
+                      color: JvColors.de(context).terciario,
+                    ),
                   ),
                 ),
               ),

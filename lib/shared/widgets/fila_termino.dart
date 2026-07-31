@@ -23,7 +23,7 @@ class FilaTermino extends StatelessWidget {
     final ColorScheme cs = Theme.of(context).colorScheme;
     final Color fg = termino.urgente
         ? JvColors.termino
-        : JvColors.txtSecundario;
+        : JvColors.de(context).secundario;
     final Color bg = termino.urgente
         ? JvColors.terminoFondo
         : cs.surfaceContainerLow;
@@ -69,10 +69,9 @@ class FilaTermino extends StatelessWidget {
                           ),
                           Text(
                             termino.mes.toUpperCase(),
-                            style: JvText.menor.copyWith(
-                              fontSize: 9,
-                              color: fg,
-                            ),
+                            style: JvText.de(
+                              context,
+                            ).menor.copyWith(fontSize: 9, color: fg),
                           ),
                         ],
                       ),
@@ -94,7 +93,7 @@ class FilaTermino extends StatelessWidget {
                               sub,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: JvText.menor,
+                              style: JvText.de(context).menor,
                             ),
                           ],
                         ],
@@ -112,7 +111,9 @@ class FilaTermino extends StatelessWidget {
                       ),
                       child: Text(
                         termino.etiqueta,
-                        style: JvText.menor.copyWith(fontSize: 11, color: fg),
+                        style: JvText.de(
+                          context,
+                        ).menor.copyWith(fontSize: 11, color: fg),
                       ),
                     ),
                   ],
@@ -144,7 +145,7 @@ class FilaTermino extends StatelessWidget {
                         Expanded(
                           child: Text(
                             'Fecha tentativa · confírmala en el expediente',
-                            style: JvText.menor.copyWith(
+                            style: JvText.de(context).menor.copyWith(
                               fontSize: 11,
                               color: JvColors.termino,
                             ),
@@ -158,7 +159,9 @@ class FilaTermino extends StatelessWidget {
                     const SizedBox(height: 6),
                     Text(
                       termino.fundamento!,
-                      style: JvText.menor.copyWith(fontSize: 11, height: 1.4),
+                      style: JvText.de(
+                        context,
+                      ).menor.copyWith(fontSize: 11, height: 1.4),
                     ),
                   ],
                 ],

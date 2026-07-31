@@ -121,7 +121,7 @@ class _DeleteAccountScreenState extends ConsumerState<DeleteAccountScreen> {
             ),
             const SizedBox(height: 24),
 
-            Text('QUÉ SE ELIMINA', style: JvText.etiqueta),
+            Text('QUÉ SE ELIMINA', style: JvText.de(context).etiqueta),
             const SizedBox(height: 10),
             ...<String>[
               'Tus conversaciones con el asistente',
@@ -135,23 +135,25 @@ class _DeleteAccountScreenState extends ConsumerState<DeleteAccountScreen> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.only(top: 3),
                       child: Icon(
                         Icons.remove_circle_outline,
                         size: 15,
-                        color: JvColors.txtTerciario,
+                        color: JvColors.de(context).terciario,
                       ),
                     ),
                     const SizedBox(width: 10),
-                    Expanded(child: Text(t, style: JvText.secundario)),
+                    Expanded(
+                      child: Text(t, style: JvText.de(context).secundario),
+                    ),
                   ],
                 ),
               ),
             ),
 
             const SizedBox(height: 18),
-            Text('QUÉ SE CONSERVA', style: JvText.etiqueta),
+            Text('QUÉ SE CONSERVA', style: JvText.de(context).etiqueta),
             const SizedBox(height: 10),
             // Google exige informar claramente de lo que se retiene y por qué.
             Container(
@@ -164,7 +166,7 @@ class _DeleteAccountScreenState extends ConsumerState<DeleteAccountScreen> {
                 'Los registros de facturación se conservan de forma anónima '
                 'durante el tiempo que exige la normativa contable y tributaria '
                 'colombiana. No quedan ligados a tu identidad.',
-                style: JvText.menor.copyWith(height: 1.5),
+                style: JvText.de(context).menor.copyWith(height: 1.5),
               ),
             ),
 
@@ -186,7 +188,9 @@ class _DeleteAccountScreenState extends ConsumerState<DeleteAccountScreen> {
               const SizedBox(height: 14),
               Text(
                 _error!,
-                style: JvText.menor.copyWith(color: JvColors.peligro),
+                style: JvText.de(
+                  context,
+                ).menor.copyWith(color: JvColors.peligro),
               ),
             ],
 

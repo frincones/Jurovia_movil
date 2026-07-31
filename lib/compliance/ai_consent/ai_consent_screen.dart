@@ -70,7 +70,7 @@ class _AiConsentScreenState extends ConsumerState<AiConsentScreen> {
                     'de inteligencia artificial externo. Necesitamos tu permiso '
                     'explícito antes de hacerlo.',
                     style: JvText.cuerpo.copyWith(
-                      color: JvColors.txtSecundario,
+                      color: JvColors.de(context).secundario,
                     ),
                   ),
                   const SizedBox(height: 26),
@@ -103,7 +103,10 @@ class _AiConsentScreenState extends ConsumerState<AiConsentScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Text('Proveedor de IA', style: JvText.etiqueta),
+                              Text(
+                                'Proveedor de IA',
+                                style: JvText.de(context).etiqueta,
+                              ),
                               const SizedBox(height: 3),
                               Text(
                                 AiConsentGate.provider,
@@ -118,7 +121,7 @@ class _AiConsentScreenState extends ConsumerState<AiConsentScreen> {
                   const SizedBox(height: 22),
 
                   // ── Datos que se comparten, enumerados ─────────────────
-                  Text('QUÉ SE ENVÍA', style: JvText.etiqueta),
+                  Text('QUÉ SE ENVÍA', style: JvText.de(context).etiqueta),
                   const SizedBox(height: 10),
                   ...AiConsentGate.datosCompartidos.map(
                     (String d) => Padding(
@@ -139,7 +142,7 @@ class _AiConsentScreenState extends ConsumerState<AiConsentScreen> {
                             child: Text(
                               d,
                               style: JvText.cuerpoMedio.copyWith(
-                                color: JvColors.txtSecundario,
+                                color: JvColors.de(context).secundario,
                               ),
                             ),
                           ),
@@ -159,8 +162,8 @@ class _AiConsentScreenState extends ConsumerState<AiConsentScreen> {
                       'No usamos tus casos para entrenar modelos. Puedes retirar '
                       'este permiso cuando quieras desde Perfil → Privacidad y '
                       'datos; sin él, el asistente no funciona.',
-                      style: JvText.menor.copyWith(
-                        color: JvColors.txtSecundario,
+                      style: JvText.de(context).menor.copyWith(
+                        color: JvColors.de(context).secundario,
                         height: 1.5,
                       ),
                     ),
@@ -184,7 +187,9 @@ class _AiConsentScreenState extends ConsumerState<AiConsentScreen> {
                     onPressed: _guardando ? null : _rechazar,
                     child: Text(
                       'Ahora no',
-                      style: JvText.chip.copyWith(color: JvColors.txtTerciario),
+                      style: JvText.chip.copyWith(
+                        color: JvColors.de(context).terciario,
+                      ),
                     ),
                   ),
                 ],

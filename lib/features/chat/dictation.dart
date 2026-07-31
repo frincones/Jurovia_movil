@@ -128,7 +128,9 @@ class BarraDictado extends StatelessWidget {
               child: CircularProgressIndicator(strokeWidth: 2),
             ),
             const SizedBox(width: 11),
-            Expanded(child: Text('Transcribiendo…', style: JvText.menor)),
+            Expanded(
+              child: Text('Transcribiendo…', style: JvText.de(context).menor),
+            ),
           ] else ...<Widget>[
             Container(
               width: 9,
@@ -141,7 +143,7 @@ class BarraDictado extends StatelessWidget {
             const SizedBox(width: 10),
             Text(
               'Grabando · $_tiempo',
-              style: JvText.menor.copyWith(color: JvColors.peligro),
+              style: JvText.de(context).menor.copyWith(color: JvColors.peligro),
             ),
             const Spacer(),
             TextButton(onPressed: onCancelar, child: const Text('Cancelar')),

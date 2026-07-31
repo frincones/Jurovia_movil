@@ -155,12 +155,12 @@ class _CasesScreenState extends ConsumerState<CasesScreen> {
                               ),
                               decoration: BoxDecoration(
                                 color: activo
-                                    ? JvColors.txtPrimario
+                                    ? JvColors.de(context).primario
                                     : cs.surfaceContainerLow,
                                 borderRadius: JvShapes.rPill,
                                 border: Border.all(
                                   color: activo
-                                      ? JvColors.txtPrimario
+                                      ? JvColors.de(context).primario
                                       : cs.outline,
                                 ),
                               ),
@@ -169,7 +169,7 @@ class _CasesScreenState extends ConsumerState<CasesScreen> {
                                 style: JvText.chip.copyWith(
                                   color: activo
                                       ? Colors.white
-                                      : JvColors.txtSecundario,
+                                      : JvColors.de(context).secundario,
                                 ),
                               ),
                             ),
@@ -260,7 +260,12 @@ class _Pildora extends StatelessWidget {
       children: <Widget>[
         Icon(icono, size: 11, color: color),
         const SizedBox(width: 5),
-        Text(texto, style: JvText.menor.copyWith(fontSize: 11.5, color: color)),
+        Text(
+          texto,
+          style: JvText.de(
+            context,
+          ).menor.copyWith(fontSize: 11.5, color: color),
+        ),
       ],
     ),
   );
@@ -276,9 +281,9 @@ class _TarjetaCaso extends StatelessWidget {
     final ColorScheme cs = Theme.of(context).colorScheme;
 
     final (Color fg, Color bg, String texto) = caso.archivado
-        ? (JvColors.txtSecundario, cs.surfaceContainerLow, 'Archivado')
+        ? (JvColors.de(context).secundario, cs.surfaceContainerLow, 'Archivado')
         : caso.fallado
-        ? (JvColors.txtSecundario, cs.surfaceContainerLow, 'Fallado')
+        ? (JvColors.de(context).secundario, cs.surfaceContainerLow, 'Fallado')
         : (JvColors.exito, JvColors.exitoFondo, 'Activo');
 
     return Material(
@@ -316,9 +321,15 @@ class _TarjetaCaso extends StatelessWidget {
                           Row(
                             children: <Widget>[
                               if (caso.codigo != null) ...<Widget>[
-                                Text(caso.codigo!, style: JvText.codigo),
+                                Text(
+                                  caso.codigo!,
+                                  style: JvText.de(context).codigo,
+                                ),
                                 if (caso.radicado != null)
-                                  Text('  ·  ', style: JvText.radicado),
+                                  Text(
+                                    '  ·  ',
+                                    style: JvText.de(context).radicado,
+                                  ),
                               ],
                               if (caso.radicado != null)
                                 Expanded(
@@ -326,7 +337,7 @@ class _TarjetaCaso extends StatelessWidget {
                                     caso.radicado!,
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
-                                    style: JvText.radicado,
+                                    style: JvText.de(context).radicado,
                                   ),
                                 ),
                             ],
@@ -338,7 +349,7 @@ class _TarjetaCaso extends StatelessWidget {
                             caso.partes,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: JvText.menor,
+                            style: JvText.de(context).menor,
                           ),
                         ],
                       ],
@@ -356,7 +367,9 @@ class _TarjetaCaso extends StatelessWidget {
                     ),
                     child: Text(
                       texto,
-                      style: JvText.menor.copyWith(fontSize: 11, color: fg),
+                      style: JvText.de(
+                        context,
+                      ).menor.copyWith(fontSize: 11, color: fg),
                     ),
                   ),
                 ],
@@ -399,11 +412,11 @@ class _TarjetaCaso extends StatelessWidget {
                       ),
                       child: Text(
                         caso.proximoTermino!.etiqueta,
-                        style: JvText.menor.copyWith(
+                        style: JvText.de(context).menor.copyWith(
                           fontSize: 11,
                           color: caso.proximoTermino!.critico
                               ? JvColors.termino
-                              : JvColors.txtSecundario,
+                              : JvColors.de(context).secundario,
                         ),
                       ),
                     ),
@@ -414,7 +427,7 @@ class _TarjetaCaso extends StatelessWidget {
                       caso.juzgado ?? caso.materia ?? '',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: JvText.menor,
+                      style: JvText.de(context).menor,
                     ),
                   ),
                 ],

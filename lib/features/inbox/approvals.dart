@@ -72,7 +72,10 @@ class BloqueAprobaciones extends ConsumerWidget {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(top: 10, bottom: 9),
-          child: Text('REQUIEREN TU DECISIÓN', style: JvText.etiqueta),
+          child: Text(
+            'REQUIEREN TU DECISIÓN',
+            style: JvText.de(context).etiqueta,
+          ),
         ),
         ...lista.map((Aprobacion a) => _Tarjeta(aprobacion: a)),
       ],
@@ -152,7 +155,7 @@ class _TarjetaState extends ConsumerState<_Tarjeta> {
           ),
           if (a.detalle.isNotEmpty) ...<Widget>[
             const SizedBox(height: 8),
-            Text(a.detalle, style: JvText.secundario),
+            Text(a.detalle, style: JvText.de(context).secundario),
           ],
           const SizedBox(height: 12),
           Row(

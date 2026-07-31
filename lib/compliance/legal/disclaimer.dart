@@ -41,12 +41,16 @@ class AiLabel extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        const Icon(Icons.auto_awesome, size: 12, color: JvColors.txtTerciario),
+        Icon(
+          Icons.auto_awesome,
+          size: 12,
+          color: JvColors.de(context).terciario,
+        ),
         const SizedBox(width: 5),
         Flexible(
           child: Text(
             compacto ? 'Generado por IA' : TextosLegales.piePorRespuesta,
-            style: JvText.menor.copyWith(fontSize: 11),
+            style: JvText.de(context).menor.copyWith(fontSize: 11),
           ),
         ),
       ],
@@ -72,16 +76,16 @@ class DisclaimerBanner extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          const Icon(
+          Icon(
             Icons.info_outline,
             size: 16,
-            color: JvColors.txtTerciario,
+            color: JvColors.de(context).terciario,
           ),
           const SizedBox(width: 9),
           Expanded(
             child: Text(
               texto ?? TextosLegales.noEsAsesoria,
-              style: JvText.menor.copyWith(height: 1.5),
+              style: JvText.de(context).menor.copyWith(height: 1.5),
             ),
           ),
         ],

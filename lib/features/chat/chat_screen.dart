@@ -272,7 +272,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
                 estado.tituloSesion!,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: JvText.menor,
+                style: JvText.de(context).menor,
               ),
           ],
         ),
@@ -418,7 +418,7 @@ class _ChipSugerenciaCaso extends StatelessWidget {
                 const SizedBox(height: 2),
                 Text(
                   'Así el trabajo y los documentos quedan en el expediente.',
-                  style: JvText.menor.copyWith(fontSize: 11),
+                  style: JvText.de(context).menor.copyWith(fontSize: 11),
                 ),
               ],
             ),
@@ -475,7 +475,8 @@ class _BannerCaso extends StatelessWidget {
                   color: JvColors.vigilancia,
                 ),
               ),
-              if (caso.codigo != null) Text(caso.codigo!, style: JvText.codigo),
+              if (caso.codigo != null)
+                Text(caso.codigo!, style: JvText.de(context).codigo),
             ],
           ),
         ),
@@ -578,7 +579,7 @@ class _Vacio extends StatelessWidget {
             const SizedBox(height: 8),
             Text(
               'Pregunta por una norma, un término o pide un borrador.',
-              style: JvText.secundario,
+              style: JvText.de(context).secundario,
               textAlign: TextAlign.center,
             ),
           ],
@@ -601,10 +602,10 @@ class _ErrorCarga extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            const Icon(
+            Icon(
               Icons.cloud_off_outlined,
               size: 36,
-              color: JvColors.txtTerciario,
+              color: JvColors.de(context).terciario,
             ),
             const SizedBox(height: 14),
             Text(

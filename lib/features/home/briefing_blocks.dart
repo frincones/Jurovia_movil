@@ -100,7 +100,7 @@ class BloqueEscudo extends StatelessWidget {
                     'Registra el radicado de un proceso y Jurovia lo revisa a '
                     'diario: te avisa de cada actuación y de los términos que '
                     'empiecen a correr.',
-                    style: JvText.menor.copyWith(height: 1.5),
+                    style: JvText.de(context).menor.copyWith(height: 1.5),
                   ),
                 ],
               ),
@@ -154,7 +154,10 @@ class _Cifra extends StatelessWidget {
       children: <Widget>[
         Text(valor, style: JvText.cifra.copyWith(color: color)),
         const SizedBox(height: 2),
-        Text(etiqueta, style: JvText.menor.copyWith(fontSize: 11.5)),
+        Text(
+          etiqueta,
+          style: JvText.de(context).menor.copyWith(fontSize: 11.5),
+        ),
       ],
     ),
   );
@@ -207,7 +210,9 @@ class _FilaTerminoBriefing extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ColorScheme cs = Theme.of(context).colorScheme;
-    final Color fg = t.critico ? JvColors.termino : JvColors.txtSecundario;
+    final Color fg = t.critico
+        ? JvColors.termino
+        : JvColors.de(context).secundario;
     final Color bg = t.critico ? JvColors.terminoFondo : cs.surfaceContainerLow;
 
     return Padding(
@@ -246,7 +251,7 @@ class _FilaTerminoBriefing extends StatelessWidget {
                         const SizedBox(height: 3),
                         Text(
                           'Fecha tentativa · confírmala en el expediente',
-                          style: JvText.menor.copyWith(
+                          style: JvText.de(context).menor.copyWith(
                             fontSize: 11,
                             color: JvColors.termino,
                           ),
@@ -267,7 +272,9 @@ class _FilaTerminoBriefing extends StatelessWidget {
                   ),
                   child: Text(
                     t.etiqueta,
-                    style: JvText.menor.copyWith(fontSize: 11, color: fg),
+                    style: JvText.de(
+                      context,
+                    ).menor.copyWith(fontSize: 11, color: fg),
                   ),
                 ),
               ],
@@ -340,16 +347,16 @@ class _FilaSimple extends StatelessWidget {
                         subtitulo,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: JvText.menor,
+                        style: JvText.de(context).menor,
                       ),
                     ],
                   ),
                 ),
                 if (accion != null)
-                  const Icon(
+                  Icon(
                     Icons.chevron_right,
                     size: 17,
-                    color: JvColors.txtTerciario,
+                    color: JvColors.de(context).terciario,
                   ),
               ],
             ),
@@ -387,7 +394,7 @@ class BloquePendientes extends StatelessWidget {
                 icono: Icons.check_circle_outline,
                 color: p.prioridad == 'alta'
                     ? JvColors.termino
-                    : JvColors.txtSecundario,
+                    : JvColors.de(context).secundario,
                 matterId: p.matterId,
               ),
             ),
@@ -463,7 +470,9 @@ class BloqueOvernight extends StatelessWidget {
                                 m.resumen,
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
-                                style: JvText.menor.copyWith(height: 1.4),
+                                style: JvText.de(
+                                  context,
+                                ).menor.copyWith(height: 1.4),
                               ),
                             ],
                           ],
@@ -535,7 +544,10 @@ class BloqueProcesos extends StatelessWidget {
                             Row(
                               children: <Widget>[
                                 if (p.codigo != null) ...<Widget>[
-                                  Text(p.codigo!, style: JvText.codigo),
+                                  Text(
+                                    p.codigo!,
+                                    style: JvText.de(context).codigo,
+                                  ),
                                   const SizedBox(width: 8),
                                 ],
                                 // Mismo criterio que la lista de casos: solo
@@ -566,11 +578,11 @@ class BloqueProcesos extends StatelessWidget {
                           ),
                           child: Text(
                             term,
-                            style: JvText.menor.copyWith(
+                            style: JvText.de(context).menor.copyWith(
                               fontSize: 11,
                               color: p.urgente
                                   ? JvColors.termino
-                                  : JvColors.txtSecundario,
+                                  : JvColors.de(context).secundario,
                             ),
                           ),
                         ),
@@ -642,7 +654,7 @@ class BloqueNovedades extends StatelessWidget {
           child: Text(
             'Son temas para consultar, no fuentes citables: al tocar uno, '
             'Jurovia busca y verifica la norma o la sentencia real.',
-            style: JvText.menor.copyWith(
+            style: JvText.de(context).menor.copyWith(
               fontSize: 11,
               height: 1.45,
               color: cs.onSurfaceVariant,
@@ -709,17 +721,17 @@ class _FilaTema extends StatelessWidget {
                     const SizedBox(height: 3),
                     Text(
                       tema.resumen,
-                      style: JvText.menor.copyWith(height: 1.45),
+                      style: JvText.de(context).menor.copyWith(height: 1.45),
                     ),
                   ],
                 ],
               ),
             ),
             const SizedBox(width: 8),
-            const Icon(
+            Icon(
               Icons.north_east,
               size: 14,
-              color: JvColors.txtTerciario,
+              color: JvColors.de(context).terciario,
             ),
           ],
         ),

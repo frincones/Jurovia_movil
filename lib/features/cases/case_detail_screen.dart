@@ -40,7 +40,7 @@ class CaseDetailScreen extends ConsumerWidget {
                   <String>[?c.codigo, ?c.radicado].join('  ·  '),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: JvText.radicado.copyWith(fontSize: 10.5),
+                  style: JvText.de(context).radicado.copyWith(fontSize: 10.5),
                 ),
             ],
           ),
@@ -131,7 +131,10 @@ class _Contenido extends ConsumerWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text('SIGUIENTE PASO', style: JvText.etiqueta),
+                        Text(
+                          'SIGUIENTE PASO',
+                          style: JvText.de(context).etiqueta,
+                        ),
                         const SizedBox(height: 4),
                         Text(caso.proximaAccion!, style: JvText.cuerpoMedio),
                       ],
@@ -162,10 +165,13 @@ class _Contenido extends ConsumerWidget {
             ),
             error: (_, _) => Text(
               'No se pudieron cargar las actuaciones.',
-              style: JvText.menor,
+              style: JvText.de(context).menor,
             ),
             data: (List<Actuacion> lista) => lista.isEmpty
-                ? Text('Sin actuaciones registradas.', style: JvText.menor)
+                ? Text(
+                    'Sin actuaciones registradas.',
+                    style: JvText.de(context).menor,
+                  )
                 : _Timeline(actuaciones: lista),
           ),
 
@@ -176,7 +182,10 @@ class _Contenido extends ConsumerWidget {
             loading: () => const SizedBox.shrink(),
             error: (_, _) => const SizedBox.shrink(),
             data: (List<Map<String, dynamic>> lista) => lista.isEmpty
-                ? Text('Sin documentos todavía.', style: JvText.menor)
+                ? Text(
+                    'Sin documentos todavía.',
+                    style: JvText.de(context).menor,
+                  )
                 : Column(
                     children: lista.map((Map<String, dynamic> d) {
                       final String nombre =
@@ -265,7 +274,7 @@ class _Metrica extends StatelessWidget {
         children: <Widget>[
           Text(
             etiqueta.toUpperCase(),
-            style: JvText.etiqueta.copyWith(color: acento),
+            style: JvText.de(context).etiqueta.copyWith(color: acento),
           ),
           const SizedBox(height: 6),
           Text(valor, style: JvText.cifra),
@@ -274,7 +283,7 @@ class _Metrica extends StatelessWidget {
               detalle,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: JvText.menor,
+              style: JvText.de(context).menor,
             ),
         ],
       ),
@@ -324,12 +333,12 @@ class _Timeline extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(a.fechaLegible, style: JvText.menor),
+                      Text(a.fechaLegible, style: JvText.de(context).menor),
                       const SizedBox(height: 2),
                       Text(a.titulo, style: JvText.cuerpoMedio),
                       if (a.detalle != null) ...<Widget>[
                         const SizedBox(height: 2),
-                        Text(a.detalle!, style: JvText.secundario),
+                        Text(a.detalle!, style: JvText.de(context).secundario),
                       ],
                     ],
                   ),
@@ -368,10 +377,10 @@ class _FilaDocumento extends StatelessWidget {
             ),
             child: Row(
               children: <Widget>[
-                const Icon(
+                Icon(
                   Icons.description_outlined,
                   size: 17,
-                  color: JvColors.txtSecundario,
+                  color: JvColors.de(context).secundario,
                 ),
                 const SizedBox(width: 11),
                 Expanded(
@@ -382,10 +391,10 @@ class _FilaDocumento extends StatelessWidget {
                     style: JvText.cuerpoMedio.copyWith(fontSize: 13.5),
                   ),
                 ),
-                const Icon(
+                Icon(
                   Icons.chevron_right,
                   size: 17,
-                  color: JvColors.txtTerciario,
+                  color: JvColors.de(context).terciario,
                 ),
               ],
             ),
@@ -423,7 +432,7 @@ class _FichaProceso extends StatelessWidget {
       return Text(
         'Este caso todavía no tiene datos del expediente. Puedes pedírselos a '
         'Jurovia o completarlos desde la web.',
-        style: JvText.menor.copyWith(height: 1.5),
+        style: JvText.de(context).menor.copyWith(height: 1.5),
       );
     }
 
@@ -446,7 +455,10 @@ class _FichaProceso extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SizedBox(width: 100, child: Text(f.$1, style: JvText.menor)),
+                SizedBox(
+                  width: 100,
+                  child: Text(f.$1, style: JvText.de(context).menor),
+                ),
                 Expanded(
                   child: SelectableText(
                     f.$2!,
@@ -455,8 +467,8 @@ class _FichaProceso extends StatelessWidget {
                     style: !f.$3
                         ? JvText.cuerpoMedio
                         : f.$1 == 'Código'
-                        ? JvText.codigo
-                        : JvText.radicado,
+                        ? JvText.de(context).codigo
+                        : JvText.de(context).radicado,
                   ),
                 ),
               ],
@@ -505,7 +517,7 @@ class _Vigilancia extends StatelessWidget {
             'Falta el radicado',
           )
         : (
-            JvColors.txtTerciario,
+            JvColors.de(context).terciario,
             cs.surface,
             Icons.visibility_off_outlined,
             'Sin vigilancia',
@@ -553,13 +565,13 @@ class _Vigilancia extends StatelessWidget {
                       'navegador y la vigilancia empieza sola.'
                 : 'Este proceso no se está vigilando. Actívalo desde Jurovia en '
                       'el navegador para recibir avisos de cada movimiento.',
-            style: JvText.menor.copyWith(height: 1.5),
+            style: JvText.de(context).menor.copyWith(height: 1.5),
           ),
           if (caso.hechosClave != null) ...<Widget>[
             const SizedBox(height: 14),
-            Text('HECHOS CLAVE', style: JvText.etiqueta),
+            Text('HECHOS CLAVE', style: JvText.de(context).etiqueta),
             const SizedBox(height: 6),
-            Text(caso.hechosClave!, style: JvText.secundario),
+            Text(caso.hechosClave!, style: JvText.de(context).secundario),
           ],
         ],
       ),

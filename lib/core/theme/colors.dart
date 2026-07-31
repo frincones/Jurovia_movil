@@ -46,7 +46,15 @@ abstract final class JvColors {
   // ─────────────────────────── Texto ───────────────────────────
   static const Color txtPrimario = Color(0xFF191427);
   static const Color txtSecundario = Color(0xFF566076);
-  static const Color txtTerciario = Color(0xFF8A93A6);
+  /// Lo más tenue que se puede pintar y seguir leyéndose.
+  ///
+  /// Era `#8A93A6`, que da **2,91:1** sobre el fondo claro — por debajo del
+  /// mínimo de WCAG AA (4,5:1) para texto pequeño, y `menor` se usa a 12,5 px
+  /// en 78 sitios. No se detectó antes porque el problema solo salta al
+  /// medirlo: a simple vista «se lee», hasta que lo miras con sol o con la
+  /// vista cansada. Este valor da 4,89:1 y sigue por debajo de [txtSecundario]
+  /// (5,94:1), así que la jerarquía se mantiene.
+  static const Color txtTerciario = Color(0xFF646D80);
 
   // ─────────────────────────── Bordes ──────────────────────────
   static const Color borde = Color(0xFFE7EAF1);
@@ -98,4 +106,35 @@ abstract final class JvColors {
 
   /// El dorado sube de luminosidad en oscuro para mantener el contraste.
   static const Color verificadoOsc = Color(0xFFE8A72E);
+
+  /// Tintas de texto e iconos resueltas contra el tema vigente.
+  ///
+  /// Los `txt*` de arriba son **tokens crudos del tema claro**: usarlos
+  /// directamente en un widget pinta gris oscuro sobre fondo oscuro, que es
+  /// invisible. Fuera de `core/theme/` siempre `JvColors.de(context).xxx`.
+  static JvTintas de(BuildContext context) =>
+      JvTintas._(Theme.of(context).brightness == Brightness.dark);
+}
+
+/// Colores de texto e icono que dependen del fondo sobre el que se pintan.
+class JvTintas {
+  const JvTintas._(this._oscuro);
+
+  final bool _oscuro;
+
+  /// Texto principal y iconos con protagonismo.
+  Color get primario =>
+      _oscuro ? JvColors.txtPrimarioOsc : JvColors.txtPrimario;
+
+  /// Metadatos y iconos de apoyo.
+  Color get secundario =>
+      _oscuro ? JvColors.txtSecundarioOsc : JvColors.txtSecundario;
+
+  /// Lo más tenue que se puede pintar y seguir siendo legible.
+  Color get terciario =>
+      _oscuro ? JvColors.txtTerciarioOsc : JvColors.txtTerciario;
+
+  /// El dorado de «fuente verificada» sube de luminosidad en oscuro.
+  Color get verificado =>
+      _oscuro ? JvColors.verificadoOsc : JvColors.verificado;
 }

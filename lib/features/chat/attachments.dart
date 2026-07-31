@@ -159,7 +159,7 @@ class _Opcion extends StatelessWidget {
                       Text(titulo, style: JvText.cuerpoMedio),
                       if (detalle != null) ...<Widget>[
                         const SizedBox(height: 2),
-                        Text(detalle!, style: JvText.menor),
+                        Text(detalle!, style: JvText.de(context).menor),
                       ],
                     ],
                   ),
@@ -205,10 +205,10 @@ class ChipAdjunto extends StatelessWidget {
               child: CircularProgressIndicator(strokeWidth: 2),
             )
           else
-            const Icon(
+            Icon(
               Icons.attach_file,
               size: 15,
-              color: JvColors.txtSecundario,
+              color: JvColors.de(context).secundario,
             ),
           const SizedBox(width: 9),
           Expanded(
@@ -216,11 +216,11 @@ class ChipAdjunto extends StatelessWidget {
               adjunto.nombre,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: JvText.menor,
+              style: JvText.de(context).menor,
             ),
           ),
           if (adjunto.tamanoLegible.isNotEmpty)
-            Text(adjunto.tamanoLegible, style: JvText.menor),
+            Text(adjunto.tamanoLegible, style: JvText.de(context).menor),
           if (!subiendo)
             IconButton(
               icon: const Icon(Icons.close, size: 15),

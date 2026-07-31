@@ -36,6 +36,9 @@ abstract final class JvTheme {
       onError: Colors.white,
       surface: superficie,
       onSurface: txt,
+      onSurfaceVariant: esOscuro
+          ? JvColors.txtSecundarioOsc
+          : JvColors.txtSecundario,
       surfaceContainerLowest: fondo,
       surfaceContainerLow: esOscuro ? JvColors.sutilOsc : JvColors.sutil,
       outline: borde,
@@ -49,6 +52,25 @@ abstract final class JvTheme {
       scaffoldBackgroundColor: fondo,
       fontFamily: JvFonts.inter,
       splashFactory: InkSparkle.splashFactory,
+
+      // Los estilos de JvText no traen color: lo heredan de aquí. Sin este
+      // bloque, un `Text(style: JvText.cuerpoFuerte)` quedaría a merced del
+      // valor por defecto de Material, que no conoce nuestra escala.
+      textTheme: TextTheme(
+        displayLarge: JvText.display.copyWith(color: txt),
+        headlineLarge: JvText.tituloPantalla.copyWith(color: txt),
+        headlineMedium: JvText.tituloSeccion.copyWith(color: txt),
+        headlineSmall: JvText.tituloHoja.copyWith(color: txt),
+        titleLarge: JvText.cifra.copyWith(color: txt),
+        titleMedium: JvText.logo.copyWith(color: txt),
+        titleSmall: JvText.cuerpoFuerte.copyWith(color: txt),
+        bodyLarge: JvText.cuerpo.copyWith(color: txt),
+        bodyMedium: JvText.cuerpoMedio.copyWith(color: txt),
+        bodySmall: JvText.chip.copyWith(color: txt),
+        labelLarge: JvText.cuerpoFuerte.copyWith(color: txt),
+        labelMedium: JvText.chip.copyWith(color: txt),
+        labelSmall: JvText.chip.copyWith(color: esquema.onSurfaceVariant),
+      ),
 
       appBarTheme: AppBarTheme(
         backgroundColor: fondo,
@@ -77,7 +99,9 @@ abstract final class JvTheme {
           borderRadius: JvShapes.rCampo,
           borderSide: const BorderSide(color: JvColors.purpura, width: 1.5),
         ),
-        hintStyle: JvText.cuerpoMedio.copyWith(color: JvColors.txtTerciario),
+        hintStyle: JvText.cuerpoMedio.copyWith(
+          color: esOscuro ? JvColors.txtTerciarioOsc : JvColors.txtTerciario,
+        ),
       ),
 
       filledButtonTheme: FilledButtonThemeData(

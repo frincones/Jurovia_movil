@@ -27,7 +27,7 @@ class LegalScreen extends StatelessWidget {
           children: <Widget>[
             const DisclaimerBanner(),
             const SizedBox(height: 24),
-            Text('DOCUMENTOS', style: JvText.etiqueta),
+            Text('DOCUMENTOS', style: JvText.de(context).etiqueta),
             const SizedBox(height: 10),
             const _Documento(
               titulo: 'Términos y condiciones',
@@ -42,7 +42,7 @@ class LegalScreen extends StatelessWidget {
               url: TextosLegales.urlCancelacion,
             ),
             const SizedBox(height: 24),
-            Text('SOBRE JUROVIA', style: JvText.etiqueta),
+            Text('SOBRE JUROVIA', style: JvText.de(context).etiqueta),
             const SizedBox(height: 10),
             Container(
               padding: const EdgeInsets.all(14),
@@ -58,13 +58,13 @@ class LegalScreen extends StatelessWidget {
                     style: JvText.cuerpoMedio,
                   ),
                   const SizedBox(height: 4),
-                  Text('Medellín, Colombia', style: JvText.menor),
+                  Text('Medellín, Colombia', style: JvText.de(context).menor),
                   const SizedBox(height: 10),
                   Text(
                     'El contenido normativo y jurisprudencial citado pertenece '
                     'a sus fuentes oficiales. Jurovia lo referencia y contrasta, '
                     'no reclama su titularidad.',
-                    style: JvText.menor.copyWith(height: 1.5),
+                    style: JvText.de(context).menor.copyWith(height: 1.5),
                   ),
                 ],
               ),
@@ -106,17 +106,17 @@ class _Documento extends StatelessWidget {
             ),
             child: Row(
               children: <Widget>[
-                const Icon(
+                Icon(
                   Icons.article_outlined,
                   size: 18,
-                  color: JvColors.txtSecundario,
+                  color: JvColors.de(context).secundario,
                 ),
                 const SizedBox(width: 12),
                 Expanded(child: Text(titulo, style: JvText.cuerpoMedio)),
-                const Icon(
+                Icon(
                   Icons.open_in_new,
                   size: 15,
-                  color: JvColors.txtTerciario,
+                  color: JvColors.de(context).terciario,
                 ),
               ],
             ),

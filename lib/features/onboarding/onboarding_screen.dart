@@ -78,7 +78,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   onPressed: () => context.go(Rutas.login),
                   child: Text(
                     'Saltar',
-                    style: JvText.chip.copyWith(color: JvColors.txtTerciario),
+                    style: JvText.chip.copyWith(
+                      color: JvColors.de(context).terciario,
+                    ),
                   ),
                 ),
               ),
@@ -125,7 +127,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           Text(
                             s.cuerpo,
                             style: JvText.cuerpo.copyWith(
-                              color: JvColors.txtSecundario,
+                              color: JvColors.de(context).secundario,
                             ),
                           ),
                           if (s.legal != null) ...<Widget>[
@@ -138,7 +140,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               ),
                               child: Text(
                                 s.legal!,
-                                style: JvText.menor.copyWith(height: 1.5),
+                                style: JvText.de(
+                                  context,
+                                ).menor.copyWith(height: 1.5),
                               ),
                             ),
                           ],

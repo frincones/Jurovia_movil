@@ -30,7 +30,7 @@ class EstadoVacio extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Icon(icono, size: 38, color: JvColors.txtTerciario),
+            Icon(icono, size: 38, color: JvColors.de(context).terciario),
             const SizedBox(height: 16),
             Text(
               titulo,
@@ -42,7 +42,7 @@ class EstadoVacio extends StatelessWidget {
               Text(
                 detalle!,
                 textAlign: TextAlign.center,
-                style: JvText.secundario,
+                style: JvText.de(context).secundario,
               ),
             ],
             if (accion != null) ...<Widget>[

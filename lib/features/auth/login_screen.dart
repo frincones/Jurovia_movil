@@ -122,14 +122,18 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               esCorreo
                   ? 'Sin contraseñas. Te enviamos un código de 6 dígitos.'
                   : 'Enviamos un código de 6 dígitos a ${_correo.text.trim()}.',
-              style: JvText.cuerpoMedio.copyWith(color: JvColors.txtSecundario),
+              style: JvText.cuerpoMedio.copyWith(
+                color: JvColors.de(context).secundario,
+              ),
             ),
             const SizedBox(height: 30),
 
             if (esCorreo) ...<Widget>[
               Text(
                 'Correo profesional',
-                style: JvText.menor.copyWith(color: JvColors.txtSecundario),
+                style: JvText.de(
+                  context,
+                ).menor.copyWith(color: JvColors.de(context).secundario),
               ),
               const SizedBox(height: 7),
               TextField(
@@ -201,7 +205,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 ),
                 child: Text(
                   _error!,
-                  style: JvText.menor.copyWith(color: JvColors.peligro),
+                  style: JvText.de(
+                    context,
+                  ).menor.copyWith(color: JvColors.peligro),
                 ),
               ),
             ],
@@ -209,7 +215,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             const SizedBox(height: 18),
             Text(
               'Al continuar aceptas los términos y la política de datos de Jurovia.',
-              style: JvText.menor.copyWith(height: 1.5),
+              style: JvText.de(context).menor.copyWith(height: 1.5),
             ),
           ],
         ),

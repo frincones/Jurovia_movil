@@ -229,7 +229,7 @@ class _HearingsScreenState extends ConsumerState<HearingsScreen> {
                     Text(
                       'MP3, M4A, MP4 o enlace de YouTube / Rama Judicial. '
                       'Jurovia transcribe, identifica intervinientes y arma el acta.',
-                      style: JvText.secundario,
+                      style: JvText.de(context).secundario,
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 18),
@@ -261,7 +261,7 @@ class _HearingsScreenState extends ConsumerState<HearingsScreen> {
               ),
 
               const SizedBox(height: 24),
-              Text('EN PROCESO', style: JvText.etiqueta),
+              Text('EN PROCESO', style: JvText.de(context).etiqueta),
               const SizedBox(height: 10),
 
               if (_cargandoJobs)
@@ -272,7 +272,10 @@ class _HearingsScreenState extends ConsumerState<HearingsScreen> {
               else if (_error != null)
                 EstadoError(onReintentar: _cargar)
               else if (_jobs.isEmpty)
-                Text('No hay audiencias en proceso.', style: JvText.menor)
+                Text(
+                  'No hay audiencias en proceso.',
+                  style: JvText.de(context).menor,
+                )
               else
                 ..._jobs.map(_TarjetaJob.new),
             ],
@@ -337,10 +340,9 @@ class _TarjetaJob extends StatelessWidget {
                   ),
                   child: Text(
                     texto,
-                    style: JvText.menor.copyWith(
-                      fontSize: 11,
-                      color: JvColors.vigilancia,
-                    ),
+                    style: JvText.de(
+                      context,
+                    ).menor.copyWith(fontSize: 11, color: JvColors.vigilancia),
                   ),
                 ),
               ],
@@ -440,7 +442,7 @@ class _BarraSubida extends StatelessWidget {
         Text(titulo, style: JvText.cuerpoMedio),
         if (progreso.legible.isNotEmpty) ...<Widget>[
           const SizedBox(height: 4),
-          Text(progreso.legible, style: JvText.menor),
+          Text(progreso.legible, style: JvText.de(context).menor),
         ],
         const SizedBox(height: 12),
         ClipRRect(

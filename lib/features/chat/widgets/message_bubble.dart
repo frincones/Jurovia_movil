@@ -147,8 +147,10 @@ class _Cabecera extends StatelessWidget {
           child: Text(
             etiqueta,
             overflow: TextOverflow.ellipsis,
-            style: JvText.menor.copyWith(
-              color: generando ? JvColors.purpura : JvColors.txtTerciario,
+            style: JvText.de(context).menor.copyWith(
+              color: generando
+                  ? JvColors.purpura
+                  : JvColors.de(context).terciario,
             ),
           ),
         ),
@@ -249,14 +251,16 @@ class _Actividad extends StatelessWidget {
                       ? Icons.check_circle
                       : Icons.radio_button_unchecked,
                   size: 13,
-                  color: p.terminado ? JvColors.exito : JvColors.txtTerciario,
+                  color: p.terminado
+                      ? JvColors.exito
+                      : JvColors.de(context).terciario,
                 ),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
                     p.nombre,
                     overflow: TextOverflow.ellipsis,
-                    style: JvText.menor,
+                    style: JvText.de(context).menor,
                   ),
                 ),
               ],
@@ -296,7 +300,9 @@ class _Fuentes extends StatelessWidget {
               const SizedBox(width: 6),
               Text(
                 'FUENTES VERIFICADAS',
-                style: JvText.etiqueta.copyWith(color: JvColors.verificadoTxt),
+                style: JvText.de(
+                  context,
+                ).etiqueta.copyWith(color: JvColors.verificadoTxt),
               ),
             ],
           ),
@@ -310,7 +316,7 @@ class _Fuentes extends StatelessWidget {
         ],
         if (consultadas.isNotEmpty) ...<Widget>[
           if (verificadas.isNotEmpty) const SizedBox(height: 6),
-          Text('FUENTES CONSULTADAS', style: JvText.etiqueta),
+          Text('FUENTES CONSULTADAS', style: JvText.de(context).etiqueta),
           const SizedBox(height: 8),
           // Sin dorado: no están contrastadas contra fuente oficial.
           ...consultadas.map(
@@ -342,14 +348,14 @@ class _FuenteSimple extends StatelessWidget {
       ),
       child: Row(
         children: <Widget>[
-          const Icon(Icons.link, size: 15, color: JvColors.txtTerciario),
+          Icon(Icons.link, size: 15, color: JvColors.de(context).terciario),
           const SizedBox(width: 9),
           Expanded(
             child: Text(
               fuente.titulo,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: JvText.menor,
+              style: JvText.de(context).menor,
             ),
           ),
         ],
@@ -393,10 +399,10 @@ class TarjetaDocumento extends StatelessWidget {
                     borderRadius: BorderRadius.circular(7),
                     border: Border.all(color: cs.outline),
                   ),
-                  child: const Icon(
+                  child: Icon(
                     Icons.description_outlined,
                     size: 18,
-                    color: JvColors.txtSecundario,
+                    color: JvColors.de(context).secundario,
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -411,7 +417,10 @@ class TarjetaDocumento extends StatelessWidget {
                         style: JvText.documentoTitulo.copyWith(fontSize: 14.5),
                       ),
                       const SizedBox(height: 2),
-                      Text(artefacto.subtitulo, style: JvText.menor),
+                      Text(
+                        artefacto.subtitulo,
+                        style: JvText.de(context).menor,
+                      ),
                     ],
                   ),
                 ),
@@ -540,7 +549,11 @@ class _BotonIcono extends StatelessWidget {
             child: SizedBox(
               width: 32,
               height: 32,
-              child: Icon(icono, size: 15, color: JvColors.txtSecundario),
+              child: Icon(
+                icono,
+                size: 15,
+                color: JvColors.de(context).secundario,
+              ),
             ),
           ),
         ),
@@ -582,7 +595,9 @@ class _Aviso extends ConsumerWidget {
               Expanded(
                 child: Text(
                   texto,
-                  style: JvText.menor.copyWith(color: color, height: 1.5),
+                  style: JvText.de(
+                    context,
+                  ).menor.copyWith(color: color, height: 1.5),
                 ),
               ),
             ],
@@ -635,13 +650,16 @@ class _Huerfano extends StatelessWidget {
         children: <Widget>[
           Row(
             children: <Widget>[
-              const Icon(
+              Icon(
                 Icons.cloud_off_outlined,
                 size: 16,
-                color: JvColors.txtTerciario,
+                color: JvColors.de(context).terciario,
               ),
               const SizedBox(width: 8),
-              Text('Esta respuesta no se completó.', style: JvText.menor),
+              Text(
+                'Esta respuesta no se completó.',
+                style: JvText.de(context).menor,
+              ),
             ],
           ),
           if (onReintentar != null) ...<Widget>[

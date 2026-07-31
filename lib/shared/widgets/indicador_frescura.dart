@@ -28,7 +28,7 @@ class IndicadorFrescura extends ConsumerWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Text(texto, style: JvText.menor.copyWith(fontSize: 11)),
+          Text(texto, style: JvText.de(context).menor.copyWith(fontSize: 11)),
           if (onRefrescar != null) ...<Widget>[
             const SizedBox(width: 4),
             InkWell(

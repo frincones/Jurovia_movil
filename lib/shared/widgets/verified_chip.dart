@@ -146,9 +146,9 @@ class SourceCard extends StatelessWidget {
                       detalle,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: JvText.menor.copyWith(
-                        color: JvColors.verificadoTxt,
-                      ),
+                      style: JvText.de(
+                        context,
+                      ).menor.copyWith(color: JvColors.verificadoTxt),
                     ),
                   ],
                 ),

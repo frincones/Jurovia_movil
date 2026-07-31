@@ -49,10 +49,10 @@ class _SinConfigurar extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                const Icon(
+                Icon(
                   Icons.settings_outlined,
                   size: 40,
-                  color: JvColors.txtTerciario,
+                  color: JvColors.de(context).terciario,
                 ),
                 const SizedBox(height: 18),
                 Text('Falta configuración', style: JvText.tituloHoja),
@@ -60,14 +60,14 @@ class _SinConfigurar extends StatelessWidget {
                 Text(
                   'Esta compilación no trae:\n${faltantes.map((String f) => '· $f').join('\n')}',
                   style: JvText.cuerpoMedio.copyWith(
-                    color: JvColors.txtSecundario,
+                    color: JvColors.de(context).secundario,
                   ),
                 ),
                 const SizedBox(height: 16),
                 Text(
                   'Se inyectan con --dart-define al compilar.\n'
                   'Ver core/config/app_config.dart',
-                  style: JvText.menor,
+                  style: JvText.de(context).menor,
                 ),
               ],
             ),

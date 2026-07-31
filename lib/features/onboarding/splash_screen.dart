@@ -26,7 +26,7 @@ class SplashScreen extends StatelessWidget {
                 Text(
                   'Tú revisas y decides.',
                   style: JvText.cuerpoMedio.copyWith(
-                    color: JvColors.txtSecundario,
+                    color: JvColors.de(context).secundario,
                   ),
                 ),
               ],
@@ -46,7 +46,9 @@ class SplashScreen extends StatelessWidget {
                 const SizedBox(height: 16),
                 Text(
                   'Verificando sesión…',
-                  style: JvText.menor.copyWith(color: JvColors.txtTerciario),
+                  style: JvText.de(
+                    context,
+                  ).menor.copyWith(color: JvColors.de(context).terciario),
                 ),
               ],
             ),

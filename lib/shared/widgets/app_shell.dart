@@ -269,7 +269,9 @@ class _Destino extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color color = activo ? JvColors.purpura : JvColors.txtTerciario;
+    final Color color = activo
+        ? JvColors.purpura
+        : JvColors.de(context).terciario;
     final Duration duracion = JvMotion.efectiva(
       context,
       const Duration(milliseconds: 220),
@@ -355,7 +357,7 @@ class _Avatar extends StatelessWidget {
     alignment: Alignment.center,
     child: Text(
       iniciales,
-      style: JvText.menor.copyWith(
+      style: JvText.de(context).menor.copyWith(
         fontSize: 9.5,
         color: Colors.white,
         fontWeight: FontWeight.w600,
@@ -390,7 +392,7 @@ class _Cuenta extends StatelessWidget {
     child: Text(
       valor > 9 ? '9+' : '$valor',
       textAlign: TextAlign.center,
-      style: JvText.menor.copyWith(
+      style: JvText.de(context).menor.copyWith(
         fontSize: 8.5,
         height: 1,
         color: Colors.white,
@@ -445,7 +447,7 @@ class HistorialDrawer extends ConsumerWidget {
             const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 6, 20, 8),
-              child: Text('RECIENTES', style: JvText.etiqueta),
+              child: Text('RECIENTES', style: JvText.de(context).etiqueta),
             ),
             Expanded(
               child: sesiones.when(
@@ -454,7 +456,7 @@ class HistorialDrawer extends ConsumerWidget {
                   padding: const EdgeInsets.all(20),
                   child: Text(
                     'No se pudo cargar el historial.',
-                    style: JvText.menor,
+                    style: JvText.de(context).menor,
                   ),
                 ),
                 data: (List<SesionChat> lista) => lista.isEmpty
@@ -462,7 +464,7 @@ class HistorialDrawer extends ConsumerWidget {
                         padding: const EdgeInsets.all(20),
                         child: Text(
                           'Aún no tienes conversaciones.',
-                          style: JvText.menor,
+                          style: JvText.de(context).menor,
                         ),
                       )
                     : ListView.builder(
@@ -513,7 +515,9 @@ class HistorialDrawer extends ConsumerWidget {
                         ),
                         Text(
                           me?.plan.toUpperCase() ?? '',
-                          style: JvText.menor.copyWith(fontSize: 11),
+                          style: JvText.de(
+                            context,
+                          ).menor.copyWith(fontSize: 11),
                         ),
                       ],
                     ),
@@ -553,7 +557,7 @@ class _ItemDrawer extends StatelessWidget {
           child: Row(
             children: <Widget>[
               if (icono != null) ...<Widget>[
-                Icon(icono, size: 17, color: JvColors.txtSecundario),
+                Icon(icono, size: 17, color: JvColors.de(context).secundario),
                 const SizedBox(width: 11),
               ],
               Expanded(
@@ -565,7 +569,10 @@ class _ItemDrawer extends StatelessWidget {
                 ),
               ),
               if (trailing != null)
-                Text(trailing!, style: JvText.menor.copyWith(fontSize: 11)),
+                Text(
+                  trailing!,
+                  style: JvText.de(context).menor.copyWith(fontSize: 11),
+                ),
             ],
           ),
         ),

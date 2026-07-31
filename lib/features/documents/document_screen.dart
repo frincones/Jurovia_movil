@@ -111,7 +111,7 @@ class _DocumentScreenState extends ConsumerState<DocumentScreen> {
             ),
             Text(
               widget.artefacto?.subtitulo ?? 'Borrador',
-              style: JvText.menor.copyWith(fontSize: 11.5),
+              style: JvText.de(context).menor.copyWith(fontSize: 11.5),
             ),
           ],
         ),
@@ -147,10 +147,10 @@ class _DocumentScreenState extends ConsumerState<DocumentScreen> {
                       children: <Widget>[
                         Row(
                           children: <Widget>[
-                            const Icon(
+                            Icon(
                               Icons.description_outlined,
                               size: 18,
-                              color: JvColors.txtSecundario,
+                              color: JvColors.de(context).secundario,
                             ),
                             const SizedBox(width: 9),
                             Expanded(

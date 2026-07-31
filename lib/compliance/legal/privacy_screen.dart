@@ -29,7 +29,7 @@ class PrivacyScreen extends ConsumerWidget {
         child: ListView(
           padding: const EdgeInsets.fromLTRB(20, 12, 20, 24),
           children: <Widget>[
-            Text('TRATAMIENTO POR IA', style: JvText.etiqueta),
+            Text('TRATAMIENTO POR IA', style: JvText.de(context).etiqueta),
             const SizedBox(height: 10),
             Container(
               padding: const EdgeInsets.all(16),
@@ -48,7 +48,7 @@ class PrivacyScreen extends ConsumerWidget {
                         size: 18,
                         color: otorgado
                             ? JvColors.exito
-                            : JvColors.txtTerciario,
+                            : JvColors.de(context).terciario,
                       ),
                       const SizedBox(width: 9),
                       Expanded(
@@ -66,14 +66,14 @@ class PrivacyScreen extends ConsumerWidget {
                               'para generar las respuestas.'
                         : 'Sin este permiso el asistente no funciona. Puedes '
                               'volver a concederlo cuando quieras.',
-                    style: JvText.secundario.copyWith(height: 1.5),
+                    style: JvText.de(context).secundario.copyWith(height: 1.5),
                   ),
                   if (consent?.fecha != null) ...<Widget>[
                     const SizedBox(height: 8),
                     Text(
                       'Concedido el ${consent!.fecha!.day}/'
                       '${consent.fecha!.month}/${consent.fecha!.year}',
-                      style: JvText.menor.copyWith(fontSize: 11),
+                      style: JvText.de(context).menor.copyWith(fontSize: 11),
                     ),
                   ],
                   const SizedBox(height: 14),
@@ -102,7 +102,7 @@ class PrivacyScreen extends ConsumerWidget {
             ),
 
             const SizedBox(height: 26),
-            Text('TUS DATOS', style: JvText.etiqueta),
+            Text('TUS DATOS', style: JvText.de(context).etiqueta),
             const SizedBox(height: 10),
             _Fila(
               icono: Icons.download_outlined,
@@ -119,7 +119,7 @@ class PrivacyScreen extends ConsumerWidget {
             ),
 
             const SizedBox(height: 26),
-            Text('DOCUMENTOS', style: JvText.etiqueta),
+            Text('DOCUMENTOS', style: JvText.de(context).etiqueta),
             const SizedBox(height: 10),
             _Fila(
               icono: Icons.description_outlined,
@@ -222,15 +222,15 @@ class _Fila extends StatelessWidget {
                       ),
                       if (detalle != null) ...<Widget>[
                         const SizedBox(height: 2),
-                        Text(detalle!, style: JvText.menor),
+                        Text(detalle!, style: JvText.de(context).menor),
                       ],
                     ],
                   ),
                 ),
-                const Icon(
+                Icon(
                   Icons.chevron_right,
                   size: 18,
-                  color: JvColors.txtTerciario,
+                  color: JvColors.de(context).terciario,
                 ),
               ],
             ),

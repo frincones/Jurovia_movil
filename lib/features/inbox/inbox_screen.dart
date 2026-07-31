@@ -20,41 +20,49 @@ class InboxScreen extends ConsumerWidget {
   const InboxScreen({super.key});
 
   /// Icono y color por tipo de aviso, como el prototipo.
-  static (IconData, Color, Color) _estilo(String tipo) => switch (tipo) {
-    'movimiento' ||
-    'actuacion' => (Icons.gavel, JvColors.purpura, const Color(0x1A7B3DF5)),
-    'deadline' || 'termino' => (
-      Icons.hourglass_bottom,
-      JvColors.termino,
-      JvColors.terminoFondo,
-    ),
-    'acta' || 'audiencia' => (
-      Icons.check_circle_outline,
-      JvColors.verificadoTxt,
-      JvColors.verificadoFondo,
-    ),
-    'vigilancia' => (
-      Icons.visibility_outlined,
-      JvColors.vigilancia,
-      JvColors.vigilanciaFondo,
-    ),
-    'documento' || 'draft_ready' => (
-      Icons.description_outlined,
-      JvColors.txtSecundario,
-      Color(0x14566076),
-    ),
-    'parte_diario' => (
-      Icons.wb_sunny_outlined,
-      JvColors.purpura,
-      Color(0x1A7B3DF5),
-    ),
-    'missing_doc' => (
-      Icons.help_outline,
-      JvColors.termino,
-      JvColors.terminoFondo,
-    ),
-    _ => (Icons.notifications_none, JvColors.txtSecundario, Color(0x14566076)),
-  };
+  ///
+  /// Recibe el contexto porque dos de los tipos usan la tinta secundaria,
+  /// que es distinta en claro y en oscuro.
+  static (IconData, Color, Color) _estilo(BuildContext context, String tipo) =>
+      switch (tipo) {
+        'movimiento' ||
+        'actuacion' => (Icons.gavel, JvColors.purpura, const Color(0x1A7B3DF5)),
+        'deadline' || 'termino' => (
+          Icons.hourglass_bottom,
+          JvColors.termino,
+          JvColors.terminoFondo,
+        ),
+        'acta' || 'audiencia' => (
+          Icons.check_circle_outline,
+          JvColors.verificadoTxt,
+          JvColors.verificadoFondo,
+        ),
+        'vigilancia' => (
+          Icons.visibility_outlined,
+          JvColors.vigilancia,
+          JvColors.vigilanciaFondo,
+        ),
+        'documento' || 'draft_ready' => (
+          Icons.description_outlined,
+          JvColors.de(context).secundario,
+          Color(0x14566076),
+        ),
+        'parte_diario' => (
+          Icons.wb_sunny_outlined,
+          JvColors.purpura,
+          Color(0x1A7B3DF5),
+        ),
+        'missing_doc' => (
+          Icons.help_outline,
+          JvColors.termino,
+          JvColors.terminoFondo,
+        ),
+        _ => (
+          Icons.notifications_none,
+          JvColors.de(context).secundario,
+          Color(0x14566076),
+        ),
+      };
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -149,7 +157,7 @@ class InboxScreen extends ConsumerWidget {
                               ),
                               child: Text(
                                 g.key.toUpperCase(),
-                                style: JvText.etiqueta,
+                                style: JvText.de(context).etiqueta,
                               ),
                             ),
                             ...g.value.map(
@@ -181,6 +189,7 @@ class _TarjetaAviso extends StatelessWidget {
   Widget build(BuildContext context) {
     final ColorScheme cs = Theme.of(context).colorScheme;
     final (IconData icono, Color fg, Color bg) = InboxScreen._estilo(
+      context,
       aviso.tipo,
     );
     final bool urgente = aviso.tipo == 'deadline';
@@ -247,12 +256,15 @@ class _TarjetaAviso extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(width: 7),
-                          Text(aviso.cuando, style: JvText.menor),
+                          Text(aviso.cuando, style: JvText.de(context).menor),
                         ],
                       ),
                       if (aviso.cuerpo.isNotEmpty) ...<Widget>[
                         const SizedBox(height: 3),
-                        Text(aviso.cuerpo, style: JvText.secundario),
+                        Text(
+                          aviso.cuerpo,
+                          style: JvText.de(context).secundario,
+                        ),
                       ],
                     ],
                   ),

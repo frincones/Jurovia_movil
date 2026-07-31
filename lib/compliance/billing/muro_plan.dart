@@ -110,7 +110,7 @@ class _Dialogo extends StatelessWidget {
             explicacion,
             style: JvText.cuerpoMedio.copyWith(
               height: 1.55,
-              color: JvColors.txtSecundario,
+              color: JvColors.de(context).secundario,
             ),
           ),
         ],
@@ -158,10 +158,10 @@ class FilaGestionarPlan extends StatelessWidget {
           ),
           child: Row(
             children: <Widget>[
-              const Icon(
+              Icon(
                 Icons.receipt_long_outlined,
                 size: 18,
-                color: JvColors.txtSecundario,
+                color: JvColors.de(context).secundario,
               ),
               const SizedBox(width: 13),
               Expanded(
@@ -170,10 +170,10 @@ class FilaGestionarPlan extends StatelessWidget {
                   style: JvText.cuerpoMedio.copyWith(fontSize: 14),
                 ),
               ),
-              const Icon(
+              Icon(
                 Icons.chevron_right,
                 size: 18,
-                color: JvColors.txtTerciario,
+                color: JvColors.de(context).terciario,
               ),
             ],
           ),

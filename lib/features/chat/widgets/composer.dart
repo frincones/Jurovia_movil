@@ -139,7 +139,7 @@ class ComposerState extends State<Composer> {
                         ? 'Escribe a Jurovia…'
                         : 'Generando respuesta…',
                     hintStyle: JvText.cuerpoMedio.copyWith(
-                      color: JvColors.txtTerciario,
+                      color: JvColors.de(context).terciario,
                     ),
                   ),
                 ),
@@ -221,7 +221,11 @@ class _AccionCircular extends StatelessWidget {
           child: SizedBox(
             width: 32,
             height: 32,
-            child: Icon(icono, size: 17, color: JvColors.txtSecundario),
+            child: Icon(
+              icono,
+              size: 17,
+              color: JvColors.de(context).secundario,
+            ),
           ),
         ),
       ),
@@ -267,17 +271,16 @@ class _AvisoBloqueo extends StatelessWidget {
                 Expanded(
                   child: Text(
                     texto,
-                    style: JvText.menor.copyWith(color: color),
+                    style: JvText.de(context).menor.copyWith(color: color),
                   ),
                 ),
                 if (explicable) ...<Widget>[
                   const SizedBox(width: 8),
                   Text(
                     'Saber más',
-                    style: JvText.menor.copyWith(
-                      color: color,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: JvText.de(
+                      context,
+                    ).menor.copyWith(color: color, fontWeight: FontWeight.w600),
                   ),
                 ],
               ],

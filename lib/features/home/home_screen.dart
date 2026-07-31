@@ -71,7 +71,7 @@ class HomeScreen extends ConsumerWidget {
               const SizedBox(height: 14),
               Row(
                 children: <Widget>[
-                  Text('Hoy · Colombia', style: JvText.secundario),
+                  Text('Hoy · Colombia', style: JvText.de(context).secundario),
                   const Spacer(),
                   const IndicadorFrescura(clave: 'inicio'),
                 ],
@@ -137,7 +137,7 @@ class _EntradaChat extends StatelessWidget {
                 child: Text(
                   'Pregunta, redacta o pega un radicado…',
                   style: JvText.cuerpoMedio.copyWith(
-                    color: JvColors.txtTerciario,
+                    color: JvColors.de(context).terciario,
                   ),
                 ),
               ),
@@ -181,7 +181,7 @@ class _AvisoConsentimiento extends StatelessWidget {
           Text(
             'El asistente necesita tu permiso para procesar tus consultas con '
             'inteligencia artificial.',
-            style: JvText.menor.copyWith(height: 1.5),
+            style: JvText.de(context).menor.copyWith(height: 1.5),
           ),
           const SizedBox(height: 10),
           AuroraButton(
@@ -343,7 +343,7 @@ class _DiaTranquilo extends StatelessWidget {
           child: Text(
             'Sin términos por vencer ni borradores esperándote. '
             'Todo revisado.',
-            style: JvText.menor.copyWith(height: 1.5),
+            style: JvText.de(context).menor.copyWith(height: 1.5),
           ),
         ),
       ],
@@ -421,10 +421,10 @@ class _Recientes extends ConsumerWidget {
                       ),
                       child: Row(
                         children: <Widget>[
-                          const Icon(
+                          Icon(
                             Icons.chat_bubble_outline,
                             size: 16,
-                            color: JvColors.txtTerciario,
+                            color: JvColors.de(context).terciario,
                           ),
                           const SizedBox(width: 11),
                           Expanded(
@@ -435,7 +435,7 @@ class _Recientes extends ConsumerWidget {
                               style: JvText.cuerpoMedio.copyWith(fontSize: 14),
                             ),
                           ),
-                          Text(s.cuando, style: JvText.menor),
+                          Text(s.cuando, style: JvText.de(context).menor),
                         ],
                       ),
                     ),
@@ -498,12 +498,12 @@ class _ResumenCuenta extends StatelessWidget {
                 style: JvText.chip.copyWith(fontSize: 12.5),
               ),
               const Spacer(),
-              Text(m.access.resumen, style: JvText.menor),
+              Text(m.access.resumen, style: JvText.de(context).menor),
               const SizedBox(width: 6),
-              const Icon(
+              Icon(
                 Icons.chevron_right,
                 size: 15,
-                color: JvColors.txtTerciario,
+                color: JvColors.de(context).terciario,
               ),
             ],
           ),

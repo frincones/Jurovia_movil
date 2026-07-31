@@ -25,6 +25,10 @@ List<FontVariation> _wght(double peso) => <FontVariation>[
   FontVariation('wght', peso),
 ];
 
+/// ⚠️ **Sin color.** Un estilo que trae el color cocido se pinta igual en tema
+/// claro que en oscuro, y en oscuro eso es texto casi negro sobre fondo casi
+/// negro: invisible. Con `color: null` el texto hereda del tema, que es quien
+/// sabe sobre qué fondo se está pintando.
 TextStyle _estilo({
   required String familia,
   required double tam,
@@ -40,12 +44,27 @@ TextStyle _estilo({
     fontVariations: _wght(peso),
     height: alto,
     letterSpacing: espaciado,
-    color: color ?? JvColors.txtPrimario,
+    color: color,
   );
 }
 
-/// Escala tipográfica tomada del prototipo (`ContextDesign/`).
+/// Escala tipográfica del prototipo (`ContextDesign/`).
+///
+/// **Los estilos de esta clase no llevan color**: heredan el del tema. Eso es
+/// lo que hace que la misma pantalla funcione en claro y en oscuro sin
+/// duplicar nada.
+///
+/// Los estilos **atenuados** —los que valen precisamente por ser más tenues
+/// que el texto normal— no están aquí: viven en [JvTextos] y solo se obtienen
+/// con `JvText.de(context)`. No es un capricho de API: «más tenue» significa
+/// un color distinto en cada fondo, así que sin contexto no se puede resolver.
+/// Que no existan como estático es a propósito — el compilador impide volver a
+/// cocer un gris claro sobre un fondo oscuro.
 abstract final class JvText {
+  /// Estilos atenuados, resueltos contra el tema vigente.
+  static JvTextos de(BuildContext context) =>
+      JvTextos._(Theme.of(context).brightness == Brightness.dark);
+
   // ───────────────────────── Space Grotesk ─────────────────────────
 
   /// Splash: "Jurov·ia" a 36 px.
@@ -91,42 +110,14 @@ abstract final class JvText {
   static TextStyle get cuerpoMedio =>
       _estilo(familia: JvFonts.inter, tam: 14.5, peso: 400, alto: 1.55);
 
-  /// Metadatos, subtítulos de lista.
-  static TextStyle get secundario => _estilo(
-    familia: JvFonts.inter,
-    tam: 13.5,
-    peso: 400,
-    color: JvColors.txtSecundario,
-  );
-
-  /// Texto de apoyo pequeño.
-  static TextStyle get menor => _estilo(
-    familia: JvFonts.inter,
-    tam: 12.5,
-    peso: 400,
-    color: JvColors.txtTerciario,
-  );
-
-  /// Etiqueta de sección en mayúsculas: "PENDIENTES", "INTEGRACIONES".
-  static TextStyle get etiqueta => _estilo(
-    familia: JvFonts.inter,
-    tam: 11,
-    peso: 600,
-    espaciado: 0.99,
-    color: JvColors.txtTerciario,
-  );
-
-  /// Texto de botón principal.
+  /// Texto de botón principal. Va sobre el gradiente aurora, así que su color
+  /// **sí** es fijo: el fondo no cambia con el tema.
   static TextStyle get boton =>
       _estilo(familia: JvFonts.inter, tam: 15, peso: 600, color: Colors.white);
 
   /// Texto de chip / píldora.
   static TextStyle get chip =>
       _estilo(familia: JvFonts.inter, tam: 12.5, peso: 500);
-
-  /// Etiqueta de la barra inferior.
-  static TextStyle get nav =>
-      _estilo(familia: JvFonts.inter, tam: 10.5, peso: 500);
 
   // ─────────────────────── Source Serif 4 ──────────────────────────
 
@@ -140,28 +131,55 @@ abstract final class JvText {
 
   // ─────────────────────── JetBrains Mono ──────────────────────────
 
-  /// Número de radicado.
-  static TextStyle get radicado => _estilo(
-    familia: JvFonts.mono,
+  /// Dígito del código OTP.
+  static TextStyle get otp =>
+      _estilo(familia: JvFonts.mono, tam: 24, peso: 600);
+}
+
+/// Estilos cuyo color depende del fondo sobre el que se pintan.
+///
+/// Se obtienen con `JvText.de(context)`.
+class JvTextos {
+  const JvTextos._(this._oscuro);
+
+  final bool _oscuro;
+
+  Color get _secundario =>
+      _oscuro ? JvColors.txtSecundarioOsc : JvColors.txtSecundario;
+
+  Color get _terciario =>
+      _oscuro ? JvColors.txtTerciarioOsc : JvColors.txtTerciario;
+
+  /// Metadatos, subtítulos de lista.
+  TextStyle get secundario =>
+      _estilo(familia: JvFonts.inter, tam: 13.5, peso: 400, color: _secundario);
+
+  /// Texto de apoyo pequeño.
+  TextStyle get menor =>
+      _estilo(familia: JvFonts.inter, tam: 12.5, peso: 400, color: _terciario);
+
+  /// Etiqueta de sección en mayúsculas: "PENDIENTES", "INTEGRACIONES".
+  TextStyle get etiqueta => _estilo(
+    familia: JvFonts.inter,
     tam: 11,
-    peso: 400,
-    color: JvColors.txtTerciario,
+    peso: 600,
+    espaciado: 0.99,
+    color: _terciario,
   );
+
+  /// Número de radicado.
+  TextStyle get radicado =>
+      _estilo(familia: JvFonts.mono, tam: 11, peso: 400, color: _terciario);
 
   /// Código global del caso (`JUR-XXXX-XXXX`).
   ///
-  /// Es el identificador con el que el abogado se refiere al caso por teléfono
-  /// o por correo, así que pesa un punto más que el radicado: no es metadato
-  /// de relleno, es el nombre corto del expediente.
-  static TextStyle get codigo => _estilo(
+  /// Pesa un punto más que el radicado: no es metadato de relleno, es el
+  /// nombre corto del expediente.
+  TextStyle get codigo => _estilo(
     familia: JvFonts.mono,
     tam: 11,
     peso: 500,
     espaciado: 0.2,
-    color: JvColors.txtSecundario,
+    color: _secundario,
   );
-
-  /// Dígito del código OTP.
-  static TextStyle get otp =>
-      _estilo(familia: JvFonts.mono, tam: 24, peso: 600);
 }

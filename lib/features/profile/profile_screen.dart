@@ -122,7 +122,7 @@ class _Cuerpo extends ConsumerWidget {
                     ),
                     if (m?.email != null) ...<Widget>[
                       const SizedBox(height: 3),
-                      Text(m!.email!, style: JvText.secundario),
+                      Text(m!.email!, style: JvText.de(context).secundario),
                     ],
                   ],
                 ),
@@ -141,7 +141,7 @@ class _Cuerpo extends ConsumerWidget {
         FilaGestionarPlan(me: m),
 
         const SizedBox(height: 24),
-        Text('CUENTA', style: JvText.etiqueta),
+        Text('CUENTA', style: JvText.de(context).etiqueta),
         const SizedBox(height: 10),
         _Fila(
           icono: Icons.privacy_tip_outlined,
@@ -160,7 +160,7 @@ class _Cuerpo extends ConsumerWidget {
         ),
 
         const SizedBox(height: 24),
-        Text('INTEGRACIONES', style: JvText.etiqueta),
+        Text('INTEGRACIONES', style: JvText.de(context).etiqueta),
         const SizedBox(height: 10),
         const _Integraciones(),
 
@@ -180,7 +180,7 @@ class _Cuerpo extends ConsumerWidget {
         Center(
           child: Text(
             'Jurovia · Medellín, Colombia',
-            style: JvText.menor.copyWith(fontSize: 11),
+            style: JvText.de(context).menor.copyWith(fontSize: 11),
           ),
         ),
       ],
@@ -232,7 +232,7 @@ class _TarjetaPlan extends ConsumerWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text('TU PLAN', style: JvText.etiqueta),
+                      Text('TU PLAN', style: JvText.de(context).etiqueta),
                       const SizedBox(height: 4),
                       Text(nombrePlan, style: JvText.cifra),
                     ],
@@ -258,7 +258,7 @@ class _TarjetaPlan extends ConsumerWidget {
               Text(
                 'Tu prueba termina el ${m!.trialEndsAt!.day}/'
                 '${m.trialEndsAt!.month}/${m.trialEndsAt!.year}.',
-                style: JvText.menor,
+                style: JvText.de(context).menor,
               ),
             ],
             // ⚠️ Aquí NO va ningún botón de compra ni enlace a la web.
@@ -295,13 +295,13 @@ class _Fila extends StatelessWidget {
             ),
             child: Row(
               children: <Widget>[
-                Icon(icono, size: 18, color: JvColors.txtSecundario),
+                Icon(icono, size: 18, color: JvColors.de(context).secundario),
                 const SizedBox(width: 12),
                 Expanded(child: Text(titulo, style: JvText.cuerpoMedio)),
-                const Icon(
+                Icon(
                   Icons.chevron_right,
                   size: 18,
-                  color: JvColors.txtTerciario,
+                  color: JvColors.de(context).terciario,
                 ),
               ],
             ),
@@ -336,7 +336,7 @@ class _Integraciones extends ConsumerWidget {
         child: Text(
           'No tienes integraciones conectadas. Puedes conectarlas desde '
           'Jurovia en el navegador.',
-          style: JvText.menor.copyWith(height: 1.5),
+          style: JvText.de(context).menor.copyWith(height: 1.5),
         ),
       );
     }
@@ -367,7 +367,9 @@ class _Integraciones extends ConsumerWidget {
                 Icon(
                   activa ? Icons.check_circle : Icons.circle_outlined,
                   size: 17,
-                  color: activa ? JvColors.exito : JvColors.txtTerciario,
+                  color: activa
+                      ? JvColors.exito
+                      : JvColors.de(context).terciario,
                 ),
                 const SizedBox(width: 12),
                 Expanded(
@@ -378,8 +380,10 @@ class _Integraciones extends ConsumerWidget {
                 ),
                 Text(
                   activa ? 'Conectado' : 'Sin conectar',
-                  style: JvText.menor.copyWith(
-                    color: activa ? JvColors.exito : JvColors.txtTerciario,
+                  style: JvText.de(context).menor.copyWith(
+                    color: activa
+                        ? JvColors.exito
+                        : JvColors.de(context).terciario,
                   ),
                 ),
               ],
